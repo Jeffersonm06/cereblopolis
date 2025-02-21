@@ -1,27 +1,108 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-tab-bar,
+ion-tab-button {
+  background: var(--ion-color-dark);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-content {
+  --padding-bottom: 0;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+p {
   margin: 0;
+  padding: 0;
 }
 
-#container a {
-  text-decoration: none;
+.modes {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+
+  .card {
+    flex: 1;
+    margin: 10px;
+    height: 150px;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.315);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    ion-icon {
+      font-size: 40px;
+    }
+
+    ion-label {
+      font-size: 18px;
+    }
+
+    &:active {
+      transform: scale(0.95);
+      background: var(--ion-color-medium);
+    }
+  }
+}
+
+.categorias {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+
+  .card {
+    flex: 1;
+    margin: 10px;
+    height: 150px;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.315);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    ion-icon {
+      font-size: 40px;
+    }
+
+    ion-label {
+      font-size: 18px;
+    }
+
+    &:active, &:hover {
+      transform: scale(0.95);
+      background: var(--ion-color-medium);
+    }
+  }
+}
+
+.dificuldade{
+  display: flex;
+
+  img{
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.quadro {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--ion-color-primary);
+
+  .start-button {
+    margin: 50% 0 0 50%;
+    transform: translate(-50%, -50%);
+  }
 }

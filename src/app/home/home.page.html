@@ -1,8 +1,113 @@
-<ion-content [fullscreen]="true">
-  <main>
-    <div class="card">
-      <ion-title>Pronto para jogar?</ion-title>
-      <ion-button expand="block">Começar</ion-button>
+<ion-tabs>
+  <ion-tab tab="modes">
+    <div id="modes-page">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Modos</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content [fullscreen]="true">
+        <div class="modes">
+          @for (mode of modes; track $index) {
+          @if(mode.type == 'single-player'){
+          <ion-card (click)="setOpen('mode', true)" (click)="setMode(mode)" class="card">
+            <ion-icon [name]="mode.icon"></ion-icon>
+            <ion-label>{{mode.name}}</ion-label>
+          </ion-card>
+          }
+          }
+        </div>
+        <ion-modal [isOpen]="isModalModeOpen">
+          <ng-template>
+            @if(!dificuldade || !categoria){
+            <ion-header>
+              <ion-toolbar color="primary">
+                <ion-title>{{modo.name}}</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="setOpen('mode',false)">Voltar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            }
+            <ion-content>
+              @if (!dificuldade) {
+              @for(dif of listaDificuldades; track $index){
+              <ion-card class="dificuldade">
+                <img [alt]="dif.name" [src]="'assets/imagens/'+dif.value+'.jpeg'" />
+                <ion-card-header>
+                  <ion-card-title>{{dif.name}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <p>{{dif.desc}}</p>
+                  <ion-button (click)="selectDif(dif.value)">Vamor</ion-button>
+                </ion-card-content>
+              </ion-card>
+              }
+              }@else if(!categoria){
+              <div class="categorias">
+                <ion-card class="card" (click)="selectCat('geral')">
+                  <ion-icon name="bulb-outline"></ion-icon>
+                  <ion-label>Geral</ion-label>
+                </ion-card>
+                @for(cat of listaCategorias; track $index){
+                <ion-card class="card" (click)="selectCat(cat.name)">
+                  <ion-icon [name]="cat.icon"></ion-icon>
+                  <ion-label>{{cat.name}}</ion-label>
+                </ion-card>
+                }
+              </div>
+              }@else {
+              <div class="quadro fade-in-left">
+                <button class="light-button fade-in-right" (click)="startGame('false')"
+                  (click)="setOpen('mode',false)">Começar</button>
+              </div>
+              }
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-content>
     </div>
-  </main>
-</ion-content>
+  </ion-tab>
+  <ion-tab tab="multplayer">
+    <div id="multplayer-page">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Multplayer</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content [fullscreen]="true">
+
+      </ion-content>
+    </div>
+  </ion-tab>
+    <ion-tab tab="history">
+    <div id="history-page">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Histórico</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content [fullscreen]="true">
+        <ion-button color="danger" expand="full" (click)="clear()">Limpar tudo</ion-button>
+      </ion-content>
+    </div>
+  </ion-tab>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="modes">
+      <ion-icon name="game-controller"></ion-icon>
+      Modos
+    </ion-tab-button>
+    <ion-tab-button tab="multplayer">
+      <ion-icon name="people"></ion-icon>
+      multplayer
+    </ion-tab-button>
+    <ion-tab-button tab="history">
+      <ion-icon name="list"></ion-icon>
+      Histórico
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+@if(processando){
+<app-loading></app-loading>
+}

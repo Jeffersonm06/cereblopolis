@@ -1,0 +1,76 @@
+<ion-content [fullscreen]="true" color="primary">
+  <div class="game">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Categoria: {{ config.categoria }}</span>
+          <ion-button color="danger" (click)="encerrarPartida()">encerrar</ion-button>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <!-- Timer -->
+    <div class="timer">
+      @if(config.modo == "Temporizado" || config.modo == "Mata Mata"){
+      {{ tempoRestante }}s
+      }
+    </div>
+    <div class="pontos">
+      Pontos: {{ pontuacao }}
+    </div>
+    <!-- Exibição da Pergunta Atual -->
+    @if(emPertida){
+    <div class="perguntas">
+      <ion-card>
+        @if(rodadas[rodadaAtual]){
+        <ion-card-header>
+          <ion-card-title>{{ rodadas[rodadaAtual][0].pergunta }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="opcoes">
+            <div class="opcao" [class.correto]="respostaSelecionada === 'A' && respostaCorreta"
+              [class.errado]="respostaSelecionada === 'A' && respostaCorreta === false" (click)="responder('A')">
+              <ion-card class="pergunta">
+                A) {{ rodadas[rodadaAtual][0].A }}
+              </ion-card>
+            </div>
+            <div class="opcao" [class.correto]="respostaSelecionada === 'B' && respostaCorreta"
+              [class.errado]="respostaSelecionada === 'B' && respostaCorreta === false" (click)="responder('B')">
+              <ion-card class="pergunta">
+                B) {{ rodadas[rodadaAtual][0].B }}
+              </ion-card>
+            </div>
+            <div class="opcao" [class.correto]="respostaSelecionada === 'C' && respostaCorreta"
+              [class.errado]="respostaSelecionada === 'C' && respostaCorreta === false" (click)="responder('C')">
+              <ion-card class="pergunta">
+                C) {{ rodadas[rodadaAtual][0].C }}
+              </ion-card>
+            </div>
+            <div class="opcao" [class.correto]="respostaSelecionada === 'D' && respostaCorreta"
+              [class.errado]="respostaSelecionada === 'D' && respostaCorreta === false" (click)="responder('D')">
+              <ion-card class="pergunta">
+                D) {{ rodadas[rodadaAtual][0].D }}
+              </ion-card>
+            </div>
+          </div>
+        </ion-card-content>
+        }
+      </ion-card>
+    </div>
+    }
+
+    <!-- Mensagem de Fim de Jogo -->
+    @if(!emPertida){
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Fim do Jogo!</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Pontuação Final: {{ pontuacao }}</p><br>
+        <ion-button expand="full" (click)="voltar()">
+          Voltar ao Início
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+</ion-content>
