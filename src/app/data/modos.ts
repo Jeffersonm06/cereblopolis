@@ -29,6 +29,11 @@ export const modes: Modo[] = [
         icon: "skull",
         type: "multplayer"
     },
+    {
+        name: "Bate e volta",
+        icon: "swap-horizontal",
+        type: "multplayer"
+    },
 ]
 
 export interface Modo {

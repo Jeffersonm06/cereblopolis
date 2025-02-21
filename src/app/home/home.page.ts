@@ -9,7 +9,8 @@ import {
 import { addIcons } from 'ionicons';
 import {
   bookOutline, brush, bulbOutline, earth, flask, gameController, glassesOutline,
-  leaf, leafOutline, list, people, skull, star, stopwatchOutline
+  leaf, leafOutline, list, people, skull, star, stopwatchOutline,
+  swapHorizontal
 } from 'ionicons/icons';
 import { modes, Modo } from '../data/modos';
 import { Categoria, categorias } from '../data/trivia';
@@ -51,7 +52,7 @@ export class HomePage implements OnInit {
       {
         gameController, people, list, star, leafOutline,
         stopwatchOutline, bookOutline, leaf, earth, brush,
-        glassesOutline, flask, bulbOutline, skull
+        glassesOutline, flask, bulbOutline, skull, swapHorizontal
       });
   }
 

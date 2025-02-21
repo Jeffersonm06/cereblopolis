@@ -25,7 +25,7 @@ const TEMPO = 20;
 
 export class PlayingPage implements OnInit {
 
-  config = { modo: '', dificuldade: '', categoria: '' };
+  config = { modo: '', dificuldade: '', categoria: '', multplayer:false };
   perguntas: Pergunta[] = [];
   rodadas: Pergunta[][] = [];
   rodadaAtual = 0;
@@ -55,6 +55,7 @@ export class PlayingPage implements OnInit {
       if (c.key == 'modo') this.config.modo = c.value;
       if (c.key == 'dificuldade') this.config.dificuldade = c.value;
       if (c.key == 'categoria') this.config.categoria = c.value;
+      if (c.key == 'multlayer' && c.value == 'true') this.config.multplayer = true; else this.config.multplayer = false;
     })
     if (this.config.categoria !== 'geral') {
       this.perguntas = perguntas.filter(p => p.categoria === this.config.categoria && p.dificuldade === this.config.dificuldade);
@@ -96,7 +97,7 @@ export class PlayingPage implements OnInit {
       if(!this.respostaCorreta && this.config.modo == "Mata Mata"){
         this.encerrarPartida();
       }
-      
+
       // Reseta estados para próxima pergunta
       this.tempoRestante = TEMPO;
       this.respostaCorreta = null;

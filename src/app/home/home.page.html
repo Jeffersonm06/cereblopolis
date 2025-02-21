@@ -76,7 +76,16 @@
         </ion-toolbar>
       </ion-header>
       <ion-content [fullscreen]="true">
-
+        <div class="modes">
+          @for (mode of modes; track $index) {
+          @if(mode.type == 'multplayer'){
+          <ion-card (click)="setOpen('mode', true)" (click)="setMode(mode)" class="card">
+            <ion-icon [name]="mode.icon"></ion-icon>
+            <ion-label>{{mode.name}}</ion-label>
+          </ion-card>
+          }
+          }
+        </div>
       </ion-content>
     </div>
   </ion-tab>
@@ -104,7 +113,7 @@
     </ion-tab-button>
     <ion-tab-button tab="history">
       <ion-icon name="list"></ion-icon>
-      Histórico
+      Prefêrencias
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
