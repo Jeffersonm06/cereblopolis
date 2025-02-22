@@ -12,23 +12,27 @@ interface Item {
 })
 export class PreferencesService {
 
+  check = false;
+
   constructor(
     private router: Router
   ) { }
 
   async init() {
-    console.log('Init: Verificando checkIn...');
-    let checked = await this.get(['checkIn']);
-    console.log('Init: Resultado de get checkIn:', checked);
+    if (!this.check) {
+      console.log('Init: Verificando checkIn...');
+      let checked = await this.get(['checkIn']);
+      console.log('Init: Resultado de get checkIn:', checked);
 
-    if (!checked || checked.length === 0) {
-      console.log('Init: checkIn não encontrado, redirecionando para /init');
-      this.router.navigateByUrl('/');
-      return;
+      if (!checked || checked.length === 0) {
+        console.log('Init: checkIn não encontrado, redirecionando para /init');
+        this.router.navigateByUrl('/');
+        return;
+      }
+      this.check = true;
+      console.log('Init: checkIn encontrado, redirecionando para /');
+      this.router.navigateByUrl('/home');
     }
-
-    console.log('Init: checkIn encontrado, redirecionando para /');
-    this.router.navigateByUrl('/home');
   }
 
   async checkIn() {
@@ -38,6 +42,14 @@ export class PreferencesService {
 
     if (checked == 'set ok') {
       console.log('CheckIn: Sucesso! Redirecionando para /home');
+      const agora = new Date();
+      const dia = agora.getDate().toString().padStart(2, '0');
+      const mes = (agora.getMonth() + 1).toString().padStart(2, '0');
+      const ano = agora.getFullYear();
+      const dataFormatada = `${dia}/${mes}/${ano}`;
+      this.set([
+        { key: 'userCreatedAt', value: `${dataFormatada}` }
+      ])
       this.router.navigateByUrl('/home');
       return;
     }
@@ -105,6 +117,6 @@ export class PreferencesService {
       console.log('Clear: Preferências removidas com sucesso');
       location.reload()
     }
-    
+
   }
 }

@@ -1,0 +1,68 @@
+.perfil {
+    width: 80%;
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+
+    .card-pic {
+        padding: 20px;
+
+        ion-avatar{
+            position: relative;
+            width: 120px;
+            height: 120px;
+
+            label{
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                background: var(--ion-color-primary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--ion-color-light);
+                font-size: 18px;
+            }
+        }
+    }
+
+    .dados {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+
+        .ipt{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        
+            input{
+                width: 100%;
+                padding: 10px;
+                border: 2px solid var(--ion-color-medium);
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        align-items: center;
+        font-size: 16px;
+
+        ion-button{
+            padding: 5px;
+        }
+    }
+}

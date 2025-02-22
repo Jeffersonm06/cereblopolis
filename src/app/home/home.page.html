@@ -75,7 +75,7 @@
           <ion-title>Multplayer</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content [fullscreen]="true">
+      <!-- <ion-content [fullscreen]="true">
         <div class="modes">
           @for (mode of modes; track $index) {
           @if(mode.type == 'multplayer'){
@@ -86,18 +86,59 @@
           }
           }
         </div>
-      </ion-content>
+      </ion-content> -->
+      <ion-card class="message">
+        <ion-text>
+          Ainda estamos trabalhando nisso
+        </ion-text>
+        <img src="assets/imagens/rei1.jpeg" alt="ainda estamo trabalhando nisso">
+      </ion-card>
     </div>
   </ion-tab>
-    <ion-tab tab="history">
+  <ion-tab tab="history">
     <div id="history-page">
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>Histórico</ion-title>
+          <ion-title>Prefêrencias</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content [fullscreen]="true">
-        <ion-button color="danger" expand="full" (click)="clear()">Limpar tudo</ion-button>
+        <div class="perfil">
+          <ion-item>
+            <ion-avatar>
+              @if(user.pic){
+              <img [src]="user.pic" alt="perfil">
+              }@else {
+              <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              }
+            </ion-avatar>
+            <ion-label>
+              @if(user.name){
+              {{user.name}} <br>
+              {{user.email}}
+              }@else {
+              Sem dados de usuário. <br>
+              Adicionar em perfil
+              }
+            </ion-label>
+            <ion-button (click)="nav('/profile')">
+              perfil
+            </ion-button>
+          </ion-item>
+        </div>
+        <ion-card>
+          <div class="email">
+            <ion-title>
+              Fale conosco (Email)
+            </ion-title>
+            <input label="Floating label" labelPlacement="floating" placeholder="Enter text" type="text"
+              [(ngModel)]="email.subject">
+            <textarea label="Floating label" labelPlacement="floating" placeholder="Enter text"
+              [(ngModel)]="email.body"></textarea>
+              <ion-button (click)="sendEmail()" expand="full">Enviar</ion-button>
+          </div>
+        </ion-card>
+        <ion-button class="limpar" color="danger" (click)="clear()">Limpar tudo</ion-button>
       </ion-content>
     </div>
   </ion-tab>

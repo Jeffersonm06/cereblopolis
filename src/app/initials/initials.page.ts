@@ -20,7 +20,6 @@ export class InitialsPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pf.init();
   }
 
   check() {

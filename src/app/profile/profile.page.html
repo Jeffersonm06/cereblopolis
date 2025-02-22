@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true">
+    <ion-button (click)="nav()" color="primary" style="margin: 10px 20px;">
+      voltar
+    </ion-button>
+  <ion-card class="perfil">
+    <ion-card class="card-pic">
+      <ion-avatar>
+        @if(user.pic){
+        <img [src]="user.pic" alt="pic">
+        }@else {
+        <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        }
+        <label for="picInput" class="camera">
+          <ion-icon name="camera"></ion-icon>
+        </label>
+        <input id="picInput" (change)="uploadPic($event)" type="file" name="picture" style="display: none;">
+      </ion-avatar>
+    </ion-card>
+    <div class="dados">
+      <div class="ipt">
+        <input type="text" [(ngModel)]="user.name" placeholder="Nome">
+      </div>
+      <div class="ipt">
+        <input type="text" [(ngModel)]="user.email" placeholder="E-mail">
+      </div>
+      <div class="ipt">
+        <input type="text" [value]="user.created_at" placeholder="Entrou em 'No Date'">
+      </div>
+      <div class="buttons">
+        <ion-button shape="round" color="warning" id="limpar">
+          Limpar perfil
+        </ion-button>
+        <ion-button shape="round" color="success" (click)="atualizarPerfil()">
+          Salvar perfil
+        </ion-button>
+        <ion-alert trigger="limpar" header="Alert!" message="Deseja mesmo limpar o perfil?" [buttons]="alertButtons"
+          (didDismiss)="setResult($event)"></ion-alert>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>
